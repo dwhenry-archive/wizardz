@@ -9,7 +9,7 @@ module Wizardz
     attr_reader :valid_states
     attr_reader :unprocessed
 
-    STATES={:first_state => Wizardz::Page::First}
+    STATES=[{:id => :first_state, :class => Wizardz::Page::First}]
 
     def initialize(fund_data={},state=nil)
       state = self.states.first if state.nil?
@@ -28,11 +28,11 @@ module Wizardz
     end
 
     def states
-      self.class::STATES.keys
+      @states ||= self.class::STATES.map{|r| r[:id]}
     end
 
     def classes
-      self.class::STATES.values
+      @classes ||= self.class::STATES.map{|r| r[:class]}
     end
 
     def create
