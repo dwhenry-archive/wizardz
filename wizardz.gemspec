@@ -36,7 +36,10 @@ Gem::Specification.new do |s|
      "spec/spec_helper.rb",
      "spec/wizardz/page_spec.rb",
      "spec/wizardz/wizard_spec.rb",
-     "spec/wizardz_spec.rb"
+     "spec/wizardz_spec.rb",
+     "test/helper.rb",
+     "test/test_wizardz.rb",
+     "wizardz.gemspec"
   ]
   s.homepage = %q{http://github.com/dwhenry/wizardz}
   s.rdoc_options = ["--charset=UTF-8"]
@@ -47,7 +50,9 @@ Gem::Specification.new do |s|
     "spec/spec_helper.rb",
      "spec/wizardz/page_spec.rb",
      "spec/wizardz/wizard_spec.rb",
-     "spec/wizardz_spec.rb"
+     "spec/wizardz_spec.rb",
+     "test/helper.rb",
+     "test/test_wizardz.rb"
   ]
 
   if s.respond_to? :specification_version then
