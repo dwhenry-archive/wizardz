@@ -7,7 +7,7 @@ begin
     gem.name = "wizardz"
     gem.summary = %Q{Multi-Step Wizard}
     gem.description = %Q{Multi-Step wizard that deals with multiple models and changing step options based on previous step input}
-    gem.email = "dw_henry@yahoo.com.au"
+    gem.email = "dave_henry@lyagushka.co.uk"
     gem.homepage = "http://github.com/dwhenry/wizardz"
     gem.authors = ["David Henry"]
     gem.add_development_dependency "rspec", ">= 1.2.9"
