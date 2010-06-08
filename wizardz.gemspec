@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{wizardz}
-  s.version = "1.0.0"
+  s.version = "1.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["David Henry"]
@@ -28,10 +28,6 @@ Gem::Specification.new do |s|
      "lib/wizardz/page/first.rb",
      "lib/wizardz/wizard.rb",
      "lib/wizardz/wizard_object.rb",
-     "nbproject/private/private.properties",
-     "nbproject/private/rake-d.txt",
-     "nbproject/project.properties",
-     "nbproject/project.xml",
      "spec/spec.opts",
      "spec/spec_helper.rb",
      "spec/wizardz/page_spec.rb",
