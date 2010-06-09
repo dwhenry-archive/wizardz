@@ -16,7 +16,21 @@ describe "Page" do
   it "calls new for each subclass" do
     page_data = {:first_state => {:value => 'test'}}
     page = Wizardz::Page::First.new
-    Wizardz::Page::First.should_receive(:new).with({:value => 'test'}).and_return(page)
+    Wizardz::Page::First.should_receive(:new).with({:value => 'test'}, nil).and_return(page)
+    Wizardz::Page.load_pages([:first_state], page_data, mock(Wizardz::Wizard, :classes => [Wizardz::Page::First]))
+  end
+
+  it "sets the merge flag to TRUE is part of passed dataset" do
+    page_data = {:first_state => {:value => 'test'}, :merge => true}
+    page = Wizardz::Page::First.new
+    Wizardz::Page::First.should_receive(:new).with({:value => 'test'}, true).and_return(page)
+    Wizardz::Page.load_pages([:first_state], page_data, mock(Wizardz::Wizard, :classes => [Wizardz::Page::First]))
+  end
+
+  it "sets the merge flag to FALSE is part of passed dataset" do
+    page_data = {:first_state => {:value => 'test'}, :merge => false}
+    page = Wizardz::Page::First.new
+    Wizardz::Page::First.should_receive(:new).with({:value => 'test'}, false).and_return(page)
     Wizardz::Page.load_pages([:first_state], page_data, mock(Wizardz::Wizard, :classes => [Wizardz::Page::First]))
   end
 
@@ -46,6 +60,7 @@ describe "Page" do
     page = Wizardz::Page::First.new({:value => 'test'})
     page.page_data.should == {:value => 'test'} 
   end
+
   context 'update' do
     it "does not raise an error if no update method implemented" do
       page = TestClass3.new({})

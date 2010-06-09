@@ -13,6 +13,7 @@ module Wizardz
 
     def initialize(fund_data={},state=nil)
       state = self.states.first if state.nil?
+      raise "Invalid State ':merge' is reservered state" if self.states.include?(:merge)
       state = state.to_sym
       raise "Invalid State Assignment: #{state}" unless self.states.include?(state)
       self.load_data(fund_data)

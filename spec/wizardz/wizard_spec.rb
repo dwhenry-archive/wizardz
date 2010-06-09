@@ -7,6 +7,10 @@ class TestClassWiz < Wizardz::Page
   end
 end
 
+class ErrorWiz < Wizardz::Wizard
+  STATES=[{:id => :merge, :class => Wizardz::Page::First}]
+end
+
 class StateRedefWiz < Wizardz::Wizard
 end
 
@@ -22,6 +26,10 @@ describe "Wizard" do
 
   it "2nd paramter must be a member of 'states'" do
     lambda{Wizardz::Wizard.new({}, :invalid_state)}.should  raise_error
+  end
+
+  it "raises an error if identifier of :merge is used any Page's" do
+    lambda{ErrorWiz.new()}.should  raise_error
   end
 
   it 'initialises valid states from params' do
