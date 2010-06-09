@@ -17,7 +17,7 @@ module Wizardz
       id = class_obj::IDENTIFIER rescue nil
       return {} if id.nil? or !states.include?(id)
 
-      obj = class_obj.new(page_data[id] || {})
+      obj = class_obj.new(page_data[id] || {}, page_data[:merge])
       obj.wizard_inst = wizard_inst
       {id => obj}
     end
@@ -38,7 +38,7 @@ module Wizardz
       states
     end
 
-    def initialize(data={})
+    def initialize(data={},merge=true)
       @page_data = data || {}
     end
 
