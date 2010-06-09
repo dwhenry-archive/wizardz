@@ -66,7 +66,7 @@ module Wizardz
       @valid_states.each do |state|
         results[state] = @pages[state].page_data if @pages[state].respond_to?(:page_data)
       end
-      results[:states] = @valid_states
+      results[:valid_states] = @valid_states
       results[:unprocessed] = @unprocessed.clone
       results[:unprocessed].delete(@state)
       results

@@ -1,3 +1,4 @@
+#require 'ruby-debug'
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 class TestClassWiz < Wizardz::Page
@@ -12,6 +13,11 @@ class ErrorWiz < Wizardz::Wizard
 end
 
 class StateRedefWiz < Wizardz::Wizard
+end
+
+class ValidStates < Wizardz::Wizard
+  STATES = [{:id => :first_state, :class => Wizardz::Page::First},
+           {:id => :test_class_wiz, :class => TestClassWiz}]
 end
 
 describe "Wizard" do
@@ -81,14 +87,14 @@ describe "Wizard" do
     wiz = StateRedefWiz.new()
     wiz.save_data.should == {:first_state=>{},
                              :unprocessed=>[:second_state],
-                             :states=>[:first_state, :second_state]}
+                             :valid_states=>[:first_state, :second_state]}
   end
 
   it 'returns the data_object to save from default values' do
     wiz = StateRedefWiz.new({:first_state => {:value => 'test'}})
     wiz.save_data.should ==  {:first_state=>{:value=>"test"},
                               :unprocessed=>[:second_state],
-                              :states=>[:first_state, :second_state]}
+                              :valid_states=>[:first_state, :second_state]}
   end
 
   it 'returns the view partial for the wizard' do
@@ -164,6 +170,25 @@ describe "Wizard" do
       wiz.update(1)
     end
   end
+
+  context "data save and load" do
+    before(:each) do
+      @page = Wizardz::Page::First.new({},false)
+      Wizardz::Page::First.should_receive(:new).with({},nil).twice.and_return(@page)
+      @wiz = ValidStates.new
+    end
+
+    it "should correctly reload valid states" do
+      @wiz.valid_states.should == [:first_state, :test_class_wiz]
+      @page.should_receive(:get_valid_states).with([:first_state, :test_class_wiz]).and_return([:first_state])
+      @wiz.update({:first => {:value => 'aaa'}},'next')
+      data = @wiz.save_data
+      load_wiz = ValidStates.new(data)
+      load_wiz.valid_states.should == [:first_state]
+    end
+
+  end
+  
 #  it 'return true for the first_look? value (indicates if page should be validated)' do
 #    wiz = Wizardz::Wizard.new({:unprocessed => [:first_state]})
 #    wiz.first_look?.should be_true
