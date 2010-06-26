@@ -1,4 +1,4 @@
-= wizardz
+= Wizardz
 
 Multi-Step Creation Wizard
 
@@ -7,30 +7,29 @@ models and user-selectable steps ordering based on user input within earlier ste
 
 The Gem is provides a Wizardz::Wizard class which is exposed to the Controller and
 manages the various steps within the creation process and a Wizardz::Page class
-with represents the individendual pages within the Wizardz.  Both class are designed
+with represents the individual pages within the Wizardz.  Both class are designed
 to be inherited from within the final implementation and expose the following methods:
 
 Wizardz::Wizard
 ---------------
 STATES      => Constant which contains the HASH of Page Identifier and Page Class pairs
 def create  => Combines the data for the Associated Pages and create the required Objects
+<page_name> => Ability to Access page objects via method call
 
 Wizardz::Page
 ---------------
-IDENTIFER                     => Identifier lookup which should match to the Page
-                                 Identifier from The Wizardz::Wizard:STATES Constant
-PARTIAL                       => Contant name of the Partial to be displayed within
-                                 the view for the page
-def initialize(data)          => Load the required Attributes onto the Page Class
-                                 (set any default values here)
+IDENTIFER                     => Identifier lookup which should match to the Page Identifier from The Wizardz::Wizard:STATES Constant
+PARTIAL                       => Contant name of the Partial to be displayed within the view for the page
+def initialize(data)          => Load the required Attributes onto the Page Class (set any default values here)
 def get_valid_states(states)  => Update the list page transistion order after page data update
-def get_object                => Return instance of the underlying object (in memory
-                                 only - do not save to table) (only required if
-                                 page_object and valid NOT overwritten
-def page_object               => return object instance (with valid? call if page
-                                 has already been visited)
-def valid?                    => return true/false if object is valid (default
-                                 implementation calls valid? on get_object)
+def get_object                => Return instance of the underlying object (in memory only - do not save to table) (only required if page_object and valid NOT overwritten
+def page_object               => return object instance (with valid? call if page has already been visited)
+def valid?                    => return true/false if object is valid (default implementation calls valid? on get_object)
+
+- To Do
+
+* Add example Implementation to show functionality in practise
+* Add Controller Methods => Use multiple calls to the Create method (change pages instead of creating object)
 
 == Note on Patches/Pull Requests
  

@@ -188,6 +188,24 @@ describe "Wizard" do
     end
 
   end
+
+  context "access page data via method missing call" do
+    before(:each) do
+      @wiz = ValidStates.new
+    end
+
+    it 'does NOT generate an error with the page exists' do
+      lambda { @wiz.first_state }.should_not raise_error
+    end
+
+    it 'returns the page data when the page exists' do
+
+    end
+
+    it 'generates an error when the page does not exist' do
+      lambda { @wiz.unknown_state }.should raise_error
+    end
+  end
   
 #  it 'return true for the first_look? value (indicates if page should be validated)' do
 #    wiz = Wizardz::Wizard.new({:unprocessed => [:first_state]})

@@ -20,6 +20,11 @@ module Wizardz
       @state = state
     end
 
+    def method_missing(m, *args, &block)  
+      return @pages[m.to_s] if self.states.include?(m.to_sym)
+      super
+    end
+
     def first_page?
       self.states.index(@state) <= 0
     end
@@ -83,6 +88,5 @@ module Wizardz
     def partial
       @pages[@state].partial
     end
-
   end
 end
