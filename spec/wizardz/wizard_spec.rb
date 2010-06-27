@@ -199,7 +199,7 @@ describe "Wizard" do
     end
 
     it 'returns the page data when the page exists' do
-
+      @wiz.first_state.should == @wiz.pages[:first_state]
     end
 
     it 'generates an error when the page does not exist' do

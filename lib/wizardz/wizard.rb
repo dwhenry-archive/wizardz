@@ -20,8 +20,8 @@ module Wizardz
       @state = state
     end
 
-    def method_missing(m, *args, &block)  
-      return @pages[m.to_s] if self.states.include?(m.to_sym)
+    def method_missing(m, *args, &block)
+      return @pages[m.to_sym] if self.states.include?(m.to_sym)
       super
     end
 

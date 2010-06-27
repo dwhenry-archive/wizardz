@@ -1,0 +1,48 @@
+-----------------------
+- Version 2.0.1
+-----------------------
+
+Fix to Hash lookup in method missing call (was returning nil value)
+
+-----------------------
+- Version 2.0.0
+-----------------------
+
+Added access to pages via method_missing call to simplify access
+
+-----------------------
+- Version 1.3.1
+-----------------------
+
+Fix to issue vaid_states issue when save and loading
+
+-----------------------
+- Version 1.3.0
+-----------------------
+
+Added Tests for merge parameter
+
+-----------------------
+- Version 1.2.0
+-----------------------
+
+Added merge option (Allow use of default values for a given page with user added defaults on Wizard Creation)
+Needs to example code for this to show functionality in practise
+
+-----------------------
+- Version 1.1.0
+-----------------------
+
+Change default state setup to use array of hashs (with :id and :class points) instead of Hash of values only.  This was required to ensure ordering could be implemented.
+
+-----------------------
+- Version 1.0.1
+-----------------------
+
+Remove netbeans configuration files from project
+
+-----------------------
+- Version 1.0.0
+-----------------------
+
+Initial implementation of Gem from code data 
